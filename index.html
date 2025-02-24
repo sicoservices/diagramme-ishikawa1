@@ -103,12 +103,15 @@
       border-radius: 10px;
       background-color: #fff;
       padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
     canvas {
       width: 100%;
+      max-width: 1800px;
       height: auto;
-      max-width: none;
+      display: block;
+      margin: 0 auto;
     }
   </style>
 </head>
@@ -153,7 +156,7 @@
     <button class="export-btn" onclick="exportDiagramPDF()">Exporter en PDF</button>
 
     <div class="canvas-container">
-      <canvas id="fishboneCanvas" width="3200" height="1800"></canvas>
+      <canvas id="fishboneCanvas" width="2000" height="1200"></canvas>
     </div>
   </div>
 
@@ -186,32 +189,32 @@
         "Milieu": parseCauses(document.getElementById('environment').value)
       };
 
-      const spineStartX = 250;
-      const spineEndX = 2950;
-      const spineY = 900;
-      const categorySpacing = 250;
-      const causeSpacing = 110;
-      const subCauseSpacing = 50;
-      const fontSize = 18;
+      const spineStartX = 200;
+      const spineEndX = 1800;
+      const spineY = 600;
+      const categorySpacing = 180;
+      const causeSpacing = 90;
+      const subCauseSpacing = 40;
+      const fontSize = 16;
       const colors = ['#FF5733', '#33B5FF', '#28A745', '#FFC107', '#9C27B0'];
 
       ctx.font = `${fontSize}px Arial`;
       ctx.lineWidth = 2;
       ctx.fillStyle = '#000';
       ctx.textAlign = 'left';
-      ctx.fillText(fncNumber, spineStartX, 50);
-      ctx.fillText(affairNumber, spineStartX, 80);
+      ctx.fillText(fncNumber, spineStartX, 40);
+      ctx.fillText(affairNumber, spineStartX, 65);
 
       ctx.beginPath();
       ctx.moveTo(spineStartX, spineY);
       ctx.lineTo(spineEndX, spineY);
       ctx.stroke();
 
-      ctx.fillText(mainCause, spineEndX + 15, spineY + 5);
+      ctx.fillText(mainCause, spineEndX + 10, spineY + 5);
 
       const categoryKeys = Object.keys(categories);
-      const xPositions = [600, 1100, 1600, 2100, 2600];
-      const offsets = [-categorySpacing * 1.2, categorySpacing * 1, -categorySpacing * 0.9, categorySpacing * 0.8, -categorySpacing * 0.7];
+      const xPositions = [400, 700, 1000, 1300, 1600];
+      const offsets = [-categorySpacing * 1.2, categorySpacing * 1, -categorySpacing, categorySpacing, -categorySpacing * 0.9];
 
       categoryKeys.forEach((category, i) => {
         const x = xPositions[i];
@@ -227,29 +230,29 @@
         ctx.stroke();
 
         ctx.textAlign = 'center';
-        ctx.fillText(category, x, baseY - (yOffset > 0 ? -35 : 35));
+        ctx.fillText(category, x, baseY - (yOffset > 0 ? -25 : 25));
 
         categories[category].forEach((cause, idx) => {
           const causeY = baseY + (yOffset > 0 ? causeSpacing * (idx + 1) : -causeSpacing * (idx + 1));
 
           ctx.beginPath();
           ctx.moveTo(x, baseY);
-          ctx.lineTo(x + 200, causeY);
+          ctx.lineTo(x + 150, causeY);
           ctx.stroke();
 
           ctx.textAlign = 'left';
-          ctx.fillText(cause.main, x + 210, causeY + 5);
+          ctx.fillText(cause.main, x + 160, causeY + 5);
 
           cause.subCauses.forEach((subCause, subIdx) => {
             const subY = causeY + subCauseSpacing * (subIdx + 1);
 
             ctx.beginPath();
-            ctx.moveTo(x + 200, causeY);
-            ctx.lineTo(x + 200, subY);
-            ctx.lineTo(x + 400, subY);
+            ctx.moveTo(x + 150, causeY);
+            ctx.lineTo(x + 150, subY);
+            ctx.lineTo(x + 300, subY);
             ctx.stroke();
 
-            ctx.fillText(subCause, x + 410, subY + 5);
+            ctx.fillText(subCause, x + 310, subY + 5);
           });
         });
       });
