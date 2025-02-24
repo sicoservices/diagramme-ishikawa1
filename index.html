@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modèle Interactif - Diagramme d'Ishikawa (5M) - Optimisé pour Notion - rev00</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .header-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      background-color: #e9e9e9;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+
+    .logo {
+      height: 80px;
+      object-fit: contain;
+    }
+
+    .info-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .diagram-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .input-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      width: 100%;
+      max-width: 1100px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    textarea, input[type="text"] {
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 8px;
+      resize: vertical;
+    }
+
+    textarea {
+      height: 70px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .export-btn {
+      background-color: #28a745;
+    }
+
+    .export-btn:hover {
+      background-color: #218838;
+    }
+
+    canvas {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fff;
+      margin-top: 20px;
+      width: 100%;
+      max-width: 2000px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-info">
+    <div class="info-fields">
+      <label>Numéro de FNC :</label>
+      <input type="text" id="fncNumber" placeholder="Ex. : SS-FNC-001">
+
+      <label>Numéro d'affaire :</label>
+      <input type="text" id="affairNumber" placeholder="Ex. : SICO-2025-AF0001">
+    </div>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAMAAADQmiixAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAARnQU1BAACxjwv8YQUAAAGpUExURUdwTz8/P0BAQH9/f3l5eWZmZnR0dE1NTUpKSmRkZGFhYVdXV1ZWVmlpaUVFRW1tbVlZWVVVVX19fXh4eEJCQkpKSllZWQ8PD0BAQD4+PnBwcHl5eWxsbGxsbEJCQmhqampqakxMTGJiYm1tbVVVVXt7e0dHR2VlZWJiYmhpaEhISExMTGdnZ3JycmhoaHZ2dnZ2dmRkZFNTU1BQUEhISEpKSkVFRXt7e0lJSU1NTUhISG1tbWFhYVNNTUJCQmFhYVRUVGRkZF1dXVdXV1lZWUpKSk1NTU5OTlJSUlZWVmhoaHZ2dnFxcV5eXmpqamhpaWNjY2JiYlhYWHt7e2ZmZlNTU1JSUlRUVGtra2xsbG5ubnFxcXV1dXp6emdnZ2FhYXd3d1tbW2VlZWdnZ2pqamZmZmpqakpKSlxcXFtbW3BwcHJycmVlZWZmZm1tbXZ2dnt7e0VFRUlJSVFRUUtLS1ZWVmpqamlpaXNzc3Z2dmNjY2hoaHNzc3l5eWRkZGxsbHR0dHd3d3x8fICAgIWFhYmJiY6OjoxMTE5OTnR0dHx8fKioqD09PQAAAAKcEhZcwAADsQAAA7EAZUrDhsAAAABYktHRACIBR1IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAWJLR0QB/wIt3gAAAAlwSFlzAAALEgAACxIB0t1+/AAAAGdJREFUeNrtwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwKwTYQABVPeo5AAAAABJRU5ErkJggg==" alt="Logo de l'entreprise" class="logo">
+  </div>
+
+  <h1>Diagramme d'Ishikawa (5M) - Optimisé pour Notion</h1>
+  <p style="text-align:center;">Remplissez les champs ci-dessous. Format : "Cause principale: Sous-cause 1; Sous-cause 2".</p>
+
+  <div class="diagram-container">
+    <div class="input-container">
+      <label for="mainCause">Problème principal :</label>
+      <textarea id="mainCause" placeholder="Ex. : Retard de livraison"></textarea>
+
+      <label for="man">Main-d'œuvre :</label>
+      <textarea id="man" placeholder="Ex. : Manque de formation: Pas de personnel; Absence de budget"></textarea>
+
+      <label for="methods">Méthodes :</label>
+      <textarea id="methods" placeholder="Ex. : Procédure obsolète: Pas de technicien; Pas de réunion d'animation"></textarea>
+
+      <label for="machines">Matériel :</label>
+      <textarea id="machines" placeholder="Ex. : Machine défectueuse: Pas de maintenance; Pas de responsable"></textarea>
+
+      <label for="materials">Matières :</label>
+      <textarea id="materials" placeholder="Ex. : Matières premières défectueuses: Pas de stock; Pas de documents"></textarea>
+
+      <label for="environment">Milieu :</label>
+      <textarea id="environment" placeholder="Ex. : Environnement bruyant: Pas de bouchons; Présence de soudeurs"></textarea>
+    </div>
+
+    <button onclick="drawDiagram()">Générer le diagramme</button>
+    <button class="export-btn" onclick="exportDiagramPNG()">Exporter en PNG</button>
+    <button class="export-btn" onclick="exportDiagramPDF()">Exporter en PDF</button>
+    <canvas id="fishboneCanvas" width="2400" height="1500"></canvas>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+    function parseCauses(input) {
+      if (!input.trim()) return [];
+      return input.split(',').map(entry => {
+        const [main, subs] = entry.split(':').map(item => item.trim());
+        const subCauses = subs ? subs.split(';').map(sub => sub.trim()) : [];
+        return { main, subCauses };
+      }).filter(cause => cause.main);
+    }
+
+    function drawDiagram() {
+      const canvas = document.getElementById('fishboneCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const fncNumber = document.getElementById('fncNumber').value || 'FNC: N/A';
+      const affairNumber = document.getElementById('affairNumber').value || 'Affaire: N/A';
+      const mainCause = document.getElementById('mainCause').value || 'Problème';
+      const categories = {
+        "Main-d'œuvre": parseCauses(document.getElementById('man').value),
+        "Méthodes": parseCauses(document.getElementById('methods').value),
+        "Matériel": parseCauses(document.getElementById('machines').value),
+        "Matières": parseCauses(document.getElementById('materials').value),
+        "Milieu": parseCauses(document.getElementById('environment').value)
+      };
+
+      const spineStartX = 200;
+      const spineEndX = 2200;
+      const spineY = 750;
+      const categorySpacing = 200;
+      const causeSpacing = 90;
+      const subCauseSpacing = 40;
+      const fontSize = 16;
+      const colors = ['#FF5733', '#33B5FF', '#28A745', '#FFC107', '#9C27B0'];
+
+      ctx.font = `${fontSize}px Arial`;
+      ctx.lineWidth = 2;
+      ctx.fillStyle = '#000';
+      ctx.textAlign = 'left';
+      ctx.fillText(fncNumber, spineStartX, 40);
+      ctx.fillText(affairNumber, spineStartX, 65);
+
+      ctx.beginPath();
+      ctx.moveTo(spineStartX, spineY);
+      ctx.lineTo(spineEndX, spineY);
+      ctx.stroke();
+
+      ctx.fillText(mainCause, spineEndX + 10, spineY + 5);
+
+      const categoryKeys = Object.keys(categories);
+      const xPositions = [450, 850, 1250, 1650, 2050];
+      const offsets = [-categorySpacing * 1.4, categorySpacing * 1.2, -categorySpacing, categorySpacing, -categorySpacing / 1.3];
+
+      categoryKeys.forEach((category, i) => {
+        const x = xPositions[i];
+        const yOffset = offsets[i];
+        const baseY = spineY + yOffset;
+
+        ctx.strokeStyle = colors[i];
+        ctx.fillStyle = colors[i];
+
+        ctx.beginPath();
+        ctx.moveTo(x, spineY);
+        ctx.lineTo(x, baseY);
+        ctx.stroke();
+
+        ctx.textAlign = 'center';
+        ctx.fillText(category, x, baseY - (yOffset > 0 ? -30 : 30));
+
+        categories[category].forEach((cause, idx) => {
+          const causeY = baseY + (yOffset > 0 ? causeSpacing * (idx + 1) : -causeSpacing * (idx + 1));
+
+          ctx.beginPath();
+          ctx.moveTo(x, baseY);
+          ctx.lineTo(x + 180, causeY);
+          ctx.stroke();
+
+          ctx.textAlign = 'left';
+          ctx.fillText(cause.main, x + 190, causeY + 5);
+
+          cause.subCauses.forEach((subCause, subIdx) => {
+            const subY = causeY + subCauseSpacing * (subIdx + 1);
+
+            ctx.beginPath();
+            ctx.moveTo(x + 180, causeY);
+            ctx.lineTo(x + 180, subY);
+            ctx.lineTo(x + 340, subY);
+            ctx.stroke();
+
+            ctx.fillText(subCause, x + 350, subY + 5);
+          });
+        });
+      });
+    }
+
+    function exportDiagramPNG() {
+      html2canvas(document.getElementById('fishboneCanvas')).then(canvasImage => {
+        const link = document.createElement('a');
+        link.download = 'diagramme_ishikawa.png';
+        link.href = canvasImage.toDataURL('image/png');
+        link.click();
+      });
+    }
+
+    function exportDiagramPDF() {
+      html2canvas(document.getElementById('fishboneCanvas')).then(canvasImage => {
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('l', 'mm', 'a4');
+        const imgData = canvasImage.toDataURL('image/png');
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (canvasImage.height * pdfWidth) / canvasImage.width;
+        pdf.addImage(imgData, 'PNG', 0, 10, pdfWidth, pdfHeight);
+        pdf.save('diagramme_ishikawa.pdf');
+      });
+    }
+  </script>
+</body>
+</html>
